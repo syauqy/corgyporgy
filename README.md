@@ -1,77 +1,42 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-  <a href="https://chakra-ui.com/">
-    <img alt="Chakra UI" src="./src/images/chakra.svg" height="60" />
+    <img alt="Gatsby" src="./src/images/corgy-porgy.png" width="60" />
   </a>
 </p>
 <h1 align="center">
-  Gatsby Hello World Chakra UI
+  Corgy Porgy
 </h1>
 
-A boilerplate with a clean Gatsby project and Chakra UI. This starter will help you kick off your Gatsby project with beautiful and simple UI component library quick and simple.
-Supercharge your site with dark theme from Chakra UI.
 
-![Gatsby-chakra](https://media.giphy.com/media/MgvAvRtfsgGBJO7Fpy/giphy.gif)
+Corgy Porgy is an app that detects a Corgi. Yes, that's the only thing this app can do 😂 .
 
+Inspired by one of [Silicon Valley's episodes](https://www.youtube.com/watch?v=NN1ctbKoXTc) where the cast member Jian Yang created an app called **Seefood**, an app to identify whether the object is a hotdog or not hotdog 😂 😂 😂 .
 
-## 🚀 Quick start
+![SEEFOOD](https://media.giphy.com/media/l0Iy9iqThC2ueLTkA/giphy.gif)
 
-1.  **Create a Gatsby site.**
+Using the Tensorflow JS and corgi detection model generated using Teachable Machine to help the app identify a corgi. Made for fun at [CorgiHacks](https://organize.mlh.io/participants/events/6531-corgihacks).
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+#CorgiHacks #madewithTFJS
 
-    ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new {your-project-name} https://github.com/syauqy/gatsby-hello-world-chakra
-    ```
+<!-- ![Handsign demo](https://media.giphy.com/media/3KCaNFPTP7ShM7V8jd/giphy.gif) -->
 
-1.  **Start developing.**
-
-    Navigate into your new site’s directory and start it up.
-
-    ```shell
-    cd {your-project-name}/
-    gatsby develop
-    ```
-
-1.  **Open the source code and start editing!**
-
-    Your site is now running at `http://localhost:8000`!
-
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
-
-    Open the `{your-project-name}` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
-
-## 🧐 What's inside?
-
-A quick look at the top-level files and directories you'll see in a Gatsby project.
-
-    .
-    ├── node_modules
-    ├── src
-        ├── components
-        ├── images
-        ├── pages
-        ├── styles
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    ├── README.md
-    └── yarn.lock
+<!-- ## [See Demo](https://handsign-m4qq6.ondigitalocean.app/) -->
 
 
-## 🎓 Docs and references
 
-- **[Gatsby Documentation](https://www.gatsbyjs.com/docs/).** 
-- **[Chakra UI Documentation](https://chakra-ui.com/docs/getting-started).** 
+# References & Libraries
+* [Tensorflow JS](https://www.tensorflow.org/js) - A Library for ML in JS.
+
+* [Object Detection model (Coco SSD)](https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd) - A model detects objects defined in the COCO dataset, which is a large-scale object detection, segmentation, and captioning dataset.
+
+* [Teachable Machine](https://teachablemachine.withgoogle.com/) - A fast, easy way to create machine learning models, by Google.
+
+If you want to learn more about Tensorflow JS and object detection model (Coco SSD), please kindly check these amazing videos
+
+* [Machine Learning with TensorFlow in JavaScript](https://www.youtube.com/watch?v=WIHZ7kjJ35o) - by [Jason Lengstorf](https://github.com/jlengstorf) and [Jason Mayes](https://github.com/jasonmayes)
+
+* [Building an Object Detection App with Tensorflow.JS and React.JS in 15 Minutes | COCO SSD](https://www.youtube.com/watch?v=uTdUUpfA83s&ab_channel=NicholasRenotte) - by [Nicholas Renotte](https://github.com/nicknochnack)
+
 
 <!-- AUTO-GENERATED-CONTENT:END -->

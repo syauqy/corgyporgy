@@ -1,11 +1,11 @@
 #webcam-container {
-    position: fixed;
+    width: 100%;
+    height: 100%;
     top:0;
     left:0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    height: 100%;
+    position: fixed;
     /* background: royalblue; */
 }
 
@@ -16,4 +16,25 @@
     object-fit: cover;
     /* transform: scaleX(-1); */
     /* filter: FlipH; */
+}
+
+#result-panel{
+    /* max-width: 500px; */
+    width: 100vh;
+    /* height: 10vh; */
+    text-align: center;
+    position: fixed;
+    top: 0;
+    /* left: calc(50% - 50px); */
+    z-index: 5;
+}
+
+.object-success{
+    background-color: #77dd77;
+    color: white;
+}
+
+.object-failed{
+    background-color: #ff6961;
+    color: white;
 }

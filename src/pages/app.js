@@ -51,7 +51,6 @@ export default function App() {
     }
 
     const videoConstraints = {
-        // cameFace === 'user'? 
         facingMode: camFace
       };
 
@@ -67,16 +66,21 @@ export default function App() {
             webcamRef.current.video.width = videoWidth;
             webcamRef.current.video.height = videoHeight;
 
-            // Set canvas height and width   canvasRef.current.width = videoWidth;
-            // canvasRef.current.height = videoHeight;
-
             // 4. TODO - Make Detections e.g. const obj = await net.detect(video);
             const obj = await net.detect(video);
-            console.log(obj);
+            if(obj.length > 0){
+                var detectedObj = obj[0].class;
+                document.getElementById('current-prediction').innerText = detectedObj;
+                // console.log(obj[0].class);
 
-            // Draw mesh   const ctx = canvasRef.current.getContext("2d");
-
-            // 5. TODO - Update drawing utility drawSomething(obj, ctx)
+                if(detectedObj === "bottle"){
+                    // console.log('success');
+                    document.getElementById('result-panel').className = "object-success";
+                }else{
+                    // console.log('failed');
+                    document.getElementById('result-panel').className = "object-failed";
+                }
+            }
         }
     };
 
@@ -101,23 +105,23 @@ export default function App() {
     }
 
     return (
-        <div>
+        <Box bgColor="#FBECDB">
             <Metatags />
-            <Container centerContent pt="8" pb="8">
-                <Box id="webcam-container" bgColor="#FBECDB">
-                    <Center>
+            <Container centerContent maxW="xl" height="100vh" pt="0" pb="0">
+                <Box id="webcam-container">
+                    <Center id="panel-center">
+                    <Stack direction="column" spacing={4} bgColor="white" id="result-panel" borderRadius="md" shadow="lg">
+                            <Heading id="current-prediction" as="h1" size="2xl" p={4} pt={6} pb={6}>Loading. . .</Heading>
+                        </Stack>
                         {camState === 'on'
                             ? <Webcam id='webcam' ref={webcamRef} videoConstraints={videoConstraints} muted={true}/>
-                            : <div id="webcam" background="black"></div>}
+                            : <div id="webcam"></div>}
                     </Center>
                 </Box>
                 <Stack direction="column">
-                    <Box height="70vh">
-                        <Stack direction="column" spacing={4}>
-                            <Heading></Heading>
-                        </Stack>
+                    <Box height="75vh" width="100%">
                     </Box>
-                    <Stack direction="row" spacing={8}>
+                    <Stack direction="row" spacing={10}>
                     <IconButton bgColor="#DB93A5" aria-label="switch cam"
                     isRound
                     color="#fff"
@@ -141,7 +145,7 @@ export default function App() {
                 </Stack>
             </Container>
 
-        </div>
+        </Box>
 
     )
 }
