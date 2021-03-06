@@ -1,52 +1,144 @@
-import {Link as GatsbyLink} from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+// import {Link as GatsbyLink} from "gatsby"
+// import PropTypes from "prop-types"
+import React, {useState, useRef, useEffect} from "react"
 import {
-    useColorMode,
-    Button,
-    Flex,
+    // useColorMode,
+    // Button,
+    // Flex,
     Box,
-    Spacer,
+    // Spacer,
     Heading,
     IconButton,
     Center,
     Container,
-    Text,
-    VStack,
+    // Text,
+    // VStack,
     Stack,
-    Link
+    // Link
 } from '@chakra-ui/react'
-import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { FaGithub } from "react-icons/fa";
+import * as tf from '@tensorflow/tfjs'
+import * as cocoSSD from '@tensorflow-models/coco-ssd'
+import Webcam from 'react-webcam'
+
+import Metatags from '../components/metatags'
+
+import { RiCameraSwitchLine, RiCameraSwitchFill, RiCameraFill, RiCameraOffFill } from "react-icons/ri";
+
+// import {ArrowForwardIcon} from '@chakra-ui/icons'
+// import {FaGithub} from "react-icons/fa";
+
+// import '@tensorflow/tfjs-backend-webgl';
+
+import '../styles/app.css'
 
 export default function App() {
-    // const {colorMode, toggleColorMode} = useColorMode();
+
+    const [camState,
+        setCamState] = useState("on");
+
+    const [camFace, setCamFace] = useState('user');
+
+    const webcamRef = useRef(null);
+    // const canvasRef = useRef(null);
+
+    const runCoco = async() => {
+        const net = await cocoSSD.load();
+
+        //loop to detect corgi
+        setInterval(() => {
+            detect(net);
+        }, 10)
+    }
+
+    const videoConstraints = {
+        // cameFace === 'user'? 
+        facingMode: camFace
+      };
+
+    const detect = async(net) => {
+        // Check data is available
+        if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
+            // Get Video Properties
+            const video = webcamRef.current.video;
+            const videoWidth = webcamRef.current.video.videoWidth;
+            const videoHeight = webcamRef.current.video.videoHeight;
+
+            // Set video width
+            webcamRef.current.video.width = videoWidth;
+            webcamRef.current.video.height = videoHeight;
+
+            // Set canvas height and width   canvasRef.current.width = videoWidth;
+            // canvasRef.current.height = videoHeight;
+
+            // 4. TODO - Make Detections e.g. const obj = await net.detect(video);
+            const obj = await net.detect(video);
+            console.log(obj);
+
+            // Draw mesh   const ctx = canvasRef.current.getContext("2d");
+
+            // 5. TODO - Update drawing utility drawSomething(obj, ctx)
+        }
+    };
+
+    useEffect(() => {
+        runCoco()
+    });
+
+    function turnOffCamera() {
+        if (camState === "on") {
+            setCamState('off');
+        } else {
+            setCamState('on');
+        }
+    }
+
+    function changeCamera(){
+        if(camFace === 'environment'){
+            setCamFace('user');
+        }else{
+            setCamFace('environment');
+        }
+    }
 
     return (
         <div>
+            <Metatags />
             <Container centerContent pt="8" pb="8">
-                <VStack spacing={6}>
-                    <Heading as='h1' size="2xl" align="center">
-                        Build accessible React apps 
-                        <span
-                            style={{
-                            color: `rgb(56, 178, 172)`
-                        }}> with speed</span>
-                    </Heading>
-                    <Text fontSize="lg" align="center">
-                        Chakra UI is a simple, modular and accessible component library that gives you
-                        the building blocks you need to build your React applications.
-                    </Text>
-                    <Stack spacing={4} direction="row" align="center">
-                        <Button colorScheme="teal" size="lg" rightIcon={<ArrowForwardIcon />}>
-                            <Link href="https://chakra-ui.com/docs/getting-started">Get Started</Link> 
-                        </Button>
-                        <Button colorScheme="gray" size="lg" leftIcon={<FaGithub />}>
-                        <Link href="https://github.com/chakra-ui/chakra-ui">Github</Link>
-                        </Button>
+                <Box id="webcam-container" bgColor="#FBECDB">
+                    <Center>
+                        {camState === 'on'
+                            ? <Webcam id='webcam' ref={webcamRef} videoConstraints={videoConstraints} muted={true}/>
+                            : <div id="webcam" background="black"></div>}
+                    </Center>
+                </Box>
+                <Stack direction="column">
+                    <Box height="70vh">
+                        <Stack direction="column" spacing={4}>
+                            <Heading></Heading>
+                        </Stack>
+                    </Box>
+                    <Stack direction="row" spacing={8}>
+                    <IconButton bgColor="#DB93A5" aria-label="switch cam"
+                    isRound
+                    color="#fff"
+                            variant="solid"
+                            icon={camFace === 'environment'
+                            ? <RiCameraSwitchLine size={20} />
+                            : <RiCameraSwitchFill size={20} />}
+                            onClick={() => changeCamera()}
+                            size="lg" />
+                    <IconButton aria-label="switch cam"
+                    bgColor="#8EA4C8"
+                    color="#fff"
+                    isRound
+                            variant="solid"
+                            icon={camState === 'on'
+                            ? <RiCameraFill size={20} />
+                            : <RiCameraOffFill size={20} />}
+                            onClick={() => turnOffCamera()}
+                            size="lg" />
                     </Stack>
-                </VStack>
-
+                </Stack>
             </Container>
 
         </div>
