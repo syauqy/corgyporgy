@@ -8,6 +8,8 @@
   Corgy Porgy
 </h1>
 
+![Corgy Porgy](https://media.giphy.com/media/I9KvvQBfDA3fS0rOsF/giphy-downsized.gif)
+
 Corgy Porgy is an app that identify a Corgi. Yes, that's the only thing this app can do 😂 .
 
 ![The Corgy Porgy](https://media.giphy.com/media/I9KvvQBfDA3fS0rOsF/giphy.gif)
@@ -65,6 +67,7 @@ I generated the corgi model using a Google's Teachable Machine. I'm using two cl
 The dog's image datasets are from [Stanford Dogs Dataset](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset)
 
 ![The Corgi model](https://media.giphy.com/media/5ODHzARlZskzUbStc9/giphy.gif)
+![The Corgi model](https://media.giphy.com/media/5ODHzARlZskzUbStc9/giphy-downsized.gif)
 
 The model itself is not quite good since the corgi classes have fewer samples compare to the not corgi.
 
