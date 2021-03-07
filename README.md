@@ -1,6 +1,6 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
-  <a href="https://www.gatsbyjs.com">
+  <a href="https://corgyporgy.vercel.app">
     <img alt="Gatsby" src="./src/images/corgy-porgy.png" width="60" />
   </a>
 </p>
@@ -8,8 +8,9 @@
   Corgy Porgy
 </h1>
 
+![Corgy Porgy Pudding Pie](https://media.giphy.com/media/I9KvvQBfDA3fS0rOsF/giphy.gif)
 
-Corgy Porgy is an app that detects a Corgi. Yes, that's the only thing this app can do 😂 .
+Corgy Porgy is an app that identify a Corgi. Yes, that's the only thing this app can do 😂 .
 
 Inspired by one of [Silicon Valley's episodes](https://www.youtube.com/watch?v=NN1ctbKoXTc) where the cast member Jian Yang created an app called **Seefood**, an app to identify whether the object is a hotdog or not hotdog 😂 😂 😂 .
 
@@ -23,7 +24,18 @@ Using the Tensorflow JS and corgi detection model generated using Teachable Mach
 
 <!-- ## [See Demo](https://handsign-m4qq6.ondigitalocean.app/) -->
 
+# Corgi Model
+I generated the corgi model using a Google's Teachable Machine. I'm using two classes for my model. *Corgi* and *Not Corgi*. Each class has several image samples. As you can see below.
 
+![Teachable Machine model generation](./src/images/teachable_machine.png)
+
+The dog's image datasets are from [Stanford Dogs Dataset](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset)
+
+The model itself is not quite good since the corgi classes have fewer samples compare to the not corgi.
+
+![Corgi model test](https://media.giphy.com/media/5ODHzARlZskzUbStc9/giphy.gif)
+
+You can download and update the existing corgi, not corgi model [here](https://drive.google.com/file/d/1xNQzNB73NbNUtaRC3RCnp3DtrSpJOCRl/view?usp=sharing).
 
 # References & Libraries
 * [Tensorflow JS](https://www.tensorflow.org/js) - A Library for ML in JS.
@@ -32,7 +44,9 @@ Using the Tensorflow JS and corgi detection model generated using Teachable Mach
 
 * [Teachable Machine](https://teachablemachine.withgoogle.com/) - A fast, easy way to create machine learning models, by Google.
 
-If you want to learn more about Tensorflow JS and object detection model (Coco SSD), please kindly check these amazing videos
+* [Stanford Dogs Dataset](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset) - A dog breed dataset, contains images of 120 breeds of dogs from around the world.
+
+### If you want to learn more about Tensorflow JS and object detection model (Coco SSD), please kindly check these amazing videos
 
 * [Machine Learning with TensorFlow in JavaScript](https://www.youtube.com/watch?v=WIHZ7kjJ35o) - by [Jason Lengstorf](https://github.com/jlengstorf) and [Jason Mayes](https://github.com/jasonmayes)
 

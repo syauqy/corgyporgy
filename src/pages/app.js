@@ -6,7 +6,9 @@ import {
     IconButton,
     Center,
     Container,
-    Stack
+    Stack,
+
+    Spacer
 } from '@chakra-ui/react'
 import * as tf from '@tensorflow/tfjs'
 // import * as cocoSSD from '@tensorflow-models/coco-ssd'
@@ -15,6 +17,7 @@ import * as tmImage from '@teachablemachine/image';
 import Webcam from 'react-webcam'
 
 import Metatags from '../components/metatags'
+import CorgImg from '../images/corgy-porgy.png'
 
 import {RiCameraSwitchLine, RiCameraSwitchFill, RiCameraFill, RiCameraOffFill} from "react-icons/ri";
 
@@ -33,15 +36,8 @@ export default function App() {
     const URL = 'https://teachablemachine.withgoogle.com/models/2U4U3j1Zm/';
 
     let model,
-        webcam,
         nameLabel,
         maxPredictions;
-
-    const runCoco = async() => {
-
-        // const net = await cocoSSD.load(); loop to detect corgi setInterval(() => {
-        //  detect(); }, 10)
-    }
 
     async function init() {
         const modelURL = URL + 'model.json';
@@ -55,7 +51,6 @@ export default function App() {
     }
 
     async function loop() {
-        // webcam.update(); // update the webcam frame
         await predict();
         window.requestAnimationFrame(loop);
     }
@@ -92,32 +87,6 @@ export default function App() {
         facingMode: camFace
     };
 
-    // const detect = async() => {
-    //     // Check data is available
-    //     if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
-    //         // Get Video Properties
-    //         const video = webcamRef.current.video;
-    //         const videoWidth = webcamRef.current.video.videoWidth;
-    //         const videoHeight = webcamRef.current.video.videoHeight;
-
-    //         // Set video width
-    //         webcamRef.current.video.width = videoWidth;
-    //         webcamRef.current.video.height = videoHeight;
-
-    //         // 4. TODO - Make Detections e.g. const obj = await net.detect(video); const obj
-    //         // = await net.detect(video); if(obj.length > 0){     var detectedObj =
-    //         // obj[0].class;     document.getElementById('current-prediction').innerText =
-    //         // detectedObj;     // console.log(obj[0].class);     if(detectedObj ===
-    //         // "bottle"){         // console.log('success');
-    //         // document.getElementById('result-panel').className = "object-success";
-    //         // }else{         // console.log('failed');
-    //         // document.getElementById('result-panel').className = "object-failed";     } }
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     runCoco()
-    // });
 
     useEffect(() => {
         init()
@@ -166,8 +135,18 @@ export default function App() {
                     </Center>
                 </Box>
                 <Stack direction="column">
-                    <Box height="75vh" width="100%"></Box>
-                    <Stack direction="row" spacing={10}>
+                    <Box height="40vh" width="100%">
+                    </Box>
+                    <Center mb={20}>
+                    <Stack direction="column" centerContent
+                            spacing={4}>
+                                <Center>
+                                <img src={CorgImg} alt="corgy porgy logo" objectFit="cover"/>
+                                </Center>
+                                <Heading as='h2' size='2xl' colorScheme="gray">Corgy Porgy</Heading>
+                        </Stack>
+                        </Center>
+                    <Stack direction="row" mt={20}>
                         <IconButton
                             bgColor="#DB93A5"
                             aria-label="switch cam"
@@ -179,6 +158,7 @@ export default function App() {
                             : <RiCameraSwitchFill size={20}/>}
                             onClick={() => changeCamera()}
                             size="lg"/>
+                            <Spacer />
                         <IconButton
                             aria-label="switch cam"
                             bgColor="#8EA4C8"
