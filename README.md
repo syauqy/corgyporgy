@@ -1,6 +1,6 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
-  <a href="https://corgyporgy.vercel.app">
+  <a href="https://corgy.space">
     <img alt="Gatsby" src="./src/images/corgy-porgy.png" width="60" />
   </a>
 </p>
@@ -22,7 +22,40 @@ Using the Tensorflow JS and corgi detection model generated using Teachable Mach
 
 <!-- ![Handsign demo](https://media.giphy.com/media/3KCaNFPTP7ShM7V8jd/giphy.gif) -->
 
-<!-- ## [See Demo](https://handsign-m4qq6.ondigitalocean.app/) -->
+## [See Demo](https://corgy.space/)
+
+# Installation
+1. **Clone the repository**
+
+  ```shell
+  # copy the repo to your machine
+
+  git clone https://github.com/syauqy/corgyporgy.git
+  ```
+
+2. **Start the project**
+
+  ```shell
+  # move to the project folder and install all dependencies
+  
+  cd corgyporgy
+  yarn install
+  ```
+
+3. **Run the project on your local machine**
+
+  ```shell
+  # run Gatsby
+
+  yarn develop
+  ```
+
+4. **The project is live 🚀**
+  
+  Your project is live and running at `http://localhost:8000`
+
+  You can edit the core program at `src/pages/app.js`
+
 
 # Corgi Model
 I generated the corgi model using a Google's Teachable Machine. I'm using two classes for my model. *Corgi* and *Not Corgi*. Each class has several image samples. As you can see below.

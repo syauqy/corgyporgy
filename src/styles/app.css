@@ -38,3 +38,9 @@
     background-color: #ff6961;
     color: white;
 }
+
+#call-to-action{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    z-index: 5;
+}

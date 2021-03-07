@@ -10,10 +10,13 @@ import {
 
     Spacer
 } from '@chakra-ui/react'
+import splitbee from '@splitbee/web';
+
+// import the tensorflow js and teachable machine library
 import * as tf from '@tensorflow/tfjs'
-// import * as cocoSSD from '@tensorflow-models/coco-ssd'
 import * as tmImage from '@teachablemachine/image';
 
+// import the webcam as th source
 import Webcam from 'react-webcam'
 
 import Metatags from '../components/metatags'
@@ -24,7 +27,9 @@ import {RiCameraSwitchLine, RiCameraSwitchFill, RiCameraFill, RiCameraOffFill} f
 import '../styles/app.css'
 
 export default function App() {
+    splitbee.init();
 
+    //iniate the default state
     const [camState,
         setCamState] = useState("on");
 
@@ -33,12 +38,21 @@ export default function App() {
 
     const webcamRef = useRef(null);
 
+    const videoConstraints = {
+        facingMode: camFace
+    };
+
+    splitbee.track('visit Corgy Porgy');
+    
+    //call the Teachable Machine model, edit the URL if you make your own model.
     const URL = 'https://teachablemachine.withgoogle.com/models/2U4U3j1Zm/';
 
-    let model,
-        nameLabel,
-        maxPredictions;
+    let model;
+    let nameLabel;
+    let ctaLabel;
+    let maxPredictions;
 
+        // initiate the model
     async function init() {
         const modelURL = URL + 'model.json';
         const metadataURL = URL + 'metadata.json';
@@ -48,8 +62,10 @@ export default function App() {
         window.requestAnimationFrame(loop);
 
         nameLabel = document.getElementById('current-prediction');
+        ctaLabel = document.getElementById('cta-text');
     }
 
+    //looping the model prediction function
     async function loop() {
         await predict();
         window.requestAnimationFrame(loop);
@@ -66,32 +82,32 @@ export default function App() {
             webcamRef.current.video.width = videoWidth;
             webcamRef.current.video.height = videoHeight;
 
-            const prediction = await model.predictTopK(video, maxPredictions = 10, false);
-            // console.log(prediction);
+            // Get the top prediction, you will get "Corgi" inside the prediction[0] when the camera detects a corgi
+            const prediction = await model.predictTopK(video, maxPredictions = 13, false);
 
+            // change the label caption and its style whether the camera capture corgi or not a corgi
             nameLabel.innerText = prediction[0].className;
             if (nameLabel.innerText === "Corgi") {
                 document
                     .getElementById('result-panel')
                     .className = "object-success";
+                    ctaLabel.innerText = 'Hello cutie!!';
             } else {
                 document
                     .getElementById('result-panel')
                     .className = "object-failed";
+                    ctaLabel.innerText = 'Face the camera to your pet';
             }
         }
 
     }
-
-    const videoConstraints = {
-        facingMode: camFace
-    };
 
 
     useEffect(() => {
         init()
     });
 
+    // utils to change states (camera mode and camera face)
     function turnOffCamera() {
         if (camState === "on") {
             setCamState('off');
@@ -138,10 +154,10 @@ export default function App() {
                     <Box height="40vh" width="100%">
                     </Box>
                     <Center mb={20}>
-                    <Stack direction="column" centerContent
+                    <Stack direction="column" 
                             spacing={4}>
                                 <Center>
-                                <img src={CorgImg} alt="corgy porgy logo" objectFit="cover"/>
+                                <img src={CorgImg} alt="corgy porgy logo"/>
                                 </Center>
                                 <Heading as='h2' size='2xl' colorScheme="gray">Corgy Porgy</Heading>
                         </Stack>
@@ -171,6 +187,9 @@ export default function App() {
                             onClick={() => turnOffCamera()}
                             size="lg"/>
                     </Stack>
+                    <Box id="call-to-action" mt={10} borderRadius="lg" textAlign="center">
+                        <Heading id="cta-text" as="h4" size="xs" p={2}></Heading>
+                    </Box>
                 </Stack>
             </Container>
 
