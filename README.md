@@ -16,9 +16,9 @@ Inspired by one of [Silicon Valley's episodes](https://www.youtube.com/watch?v=N
 
 ![SEEFOOD](https://media.giphy.com/media/l0Iy9iqThC2ueLTkA/giphy.gif)
 
-Using the Tensorflow JS and corgi detection model generated using Teachable Machine to help the app identify a corgi. Made for fun at [CorgiHacks](https://organize.mlh.io/participants/events/6531-corgihacks).
+Using the Tensorflow JS and corgi detection model generated using Teachable Machine to help the app identify a corgi. Made for fun at [CorgiHacks](https://devpost.com/software/corgy-porgy).
 
-#CorgiHacks #madewithTFJS
+`#CorgiHacks` `#madewithTFJS`
 
 <!-- ![Handsign demo](https://media.giphy.com/media/3KCaNFPTP7ShM7V8jd/giphy.gif) -->
 
@@ -58,7 +58,7 @@ Using the Tensorflow JS and corgi detection model generated using Teachable Mach
 
 
 # Corgi Model
-I generated the corgi model using a Google's Teachable Machine. I'm using two classes for my model. *Corgi* and *Not Corgi*. Each class has several image samples. As you can see below.
+I generated the corgi model using a Google's Teachable Machine. I'm using two classes for my model. `Corgi` and `Not Corgi`. Each class has several image samples. As you can see below.
 
 ![Teachable Machine model generation](./src/images/teachable_machine.png)
 
